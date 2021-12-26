@@ -1,0 +1,14 @@
+# How much durability the stillsuit should replenish upon drinking.
+# Please keep in mind that stillsuits are leather armor, meaning 80 points total.
+# Default is 16, or 1/5th of the durability.
+durability-replenish: 16
+
+# For debugging purposes. Only set true if things aren't working as intended
+# General debugging stuff
+debug-general: false
+
+# Replenish stillsuit upon eating/drinking
+debug-EatEvent: false
+
+# Players shouldn't be able to use anvils, crafting tables, etc.
+debug-cancel: false

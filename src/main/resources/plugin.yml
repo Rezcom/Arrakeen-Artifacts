@@ -1,6 +1,6 @@
-name: Stillsuit
+name: Arrakis
 version: '${project.version}'
-main: rezcom.stillsuit.Main
+main: rezcom.arrakis.Main
 api-version: 1.18
 commands:
   stillsuit:

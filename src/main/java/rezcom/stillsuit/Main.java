@@ -9,7 +9,9 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        new giveStillsuitCommand(this);
+
+        // Register commands
+        this.getCommand("stillsuit").setExecutor(new giveStillsuitCommand());
     }
 
     @Override

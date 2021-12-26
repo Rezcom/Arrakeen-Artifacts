@@ -2,3 +2,8 @@ name: Stillsuit
 version: '${project.version}'
 main: rezcom.stillsuit.Main
 api-version: 1.18
+commands:
+  stillsuit:
+    description: Gives a stillsuit to the player who calls this command.
+    usage: /stillsuit
+    permission: stillsuit.give

@@ -1,0 +1,4 @@
+name: Stillsuit
+version: '${project.version}'
+main: rezcom.stillsuit.Main
+api-version: 1.18

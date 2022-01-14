@@ -33,7 +33,7 @@ public class stillsuitFunctions {
     public static Set<Material> replenishFoods = new HashSet<>();
 
     // Color of the Chestplate for the Stillsuit
-    private static final Color stillsuitColor = Color.fromRGB(0x7cc1f4);
+    private static final Color stillsuitColor = Color.fromRGB(0xff0040);
 
     // How much durability the stillsuit should replenish upon drinking.
     // Please keep in mind that stillsuits are leather armor, meaning 80 points total.
@@ -55,9 +55,10 @@ public class stillsuitFunctions {
             Component.text("but it is rumored to have been essential for its people's").color(TextColor.color(0xffd75e)).decoration(TextDecoration.ITALIC, false),
             Component.text("survival. It should be handled with care.").color(TextColor.color(0xffd75e)).decoration(TextDecoration.ITALIC, false),
             Component.text(" "),
-            Component.text("Recovers the user's moisture, allowing them to").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
-            Component.text("survive longer without sustenance. Consume fluids").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
-            Component.text("while wearing to replenish the suit.").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
+            Component.text("Recovers the user's moisture, allowing them to survive").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
+            Component.text("significantly longer without sustenance. Drastically increases").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
+            Component.text("health regeneration from satiation, at the cost of moisture.").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
+            Component.text("Consume fluids while wearing to replenish the suit.").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
             Component.text(" "),
             Component.text("Lord, save us from that horrible land!").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
             Component.text("Save us... oh-h-h, save us").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
@@ -99,8 +100,6 @@ public class stillsuitFunctions {
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         itemStack.setItemMeta(itemMeta);
-
-
 
         stillsuitItemStack = itemStack;
     }

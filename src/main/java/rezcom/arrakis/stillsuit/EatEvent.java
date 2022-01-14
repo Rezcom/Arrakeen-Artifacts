@@ -23,9 +23,7 @@ public class EatEvent implements Listener {
         Main.sendDebugMessage("Player consumed something",debugEatEvent);
 
         if (debugEatEvent){
-            if (foodItem != null){
-                Main.sendDebugMessage("foodItem isn't null",true);
-            }
+            Main.sendDebugMessage("foodItem isn't null",true);
             if (player.getInventory().getChestplate() != null){
                 Main.sendDebugMessage("Player is wearing a chestplate.",true);
             }
@@ -35,7 +33,7 @@ public class EatEvent implements Listener {
 
         }
 
-        if (foodItem != null && player.getInventory().getChestplate() != null && stillsuitFunctions.replenishFoods.contains(foodItem.getType()) && stillsuitFunctions.isWearingStillsuit(player)){
+        if (player.getInventory().getChestplate() != null && stillsuitFunctions.replenishFoods.contains(foodItem.getType()) && stillsuitFunctions.isWearingStillsuit(player)){
             // The food item is valid, and the player is wearing the stillsuit.
             Main.sendDebugMessage("Player is wearing a stillsuit, and the food item is valid for replenishment.",debugEatEvent);
             stillsuitFunctions.addDurability(player);

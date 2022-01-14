@@ -28,8 +28,11 @@ public class CancelResultEvents implements Listener {
         Main.sendDebugMessage("Enchanting event triggered",cancelDebug);
         ItemStack itemStack = event.getItem();
         ItemMeta itemMeta = itemStack.getItemMeta();
+        if (itemMeta.lore() == null){
+            return;
+        }
         for (Component c : Main.arrakeenIdentifiers){
-            if (Objects.requireNonNull(itemMeta.lore()).contains(c)){
+            if (itemMeta.hasLore() && (Objects.requireNonNull(itemMeta.lore()).contains(c))){
                 Main.sendDebugMessage("Enchanting event set to null",cancelDebug);
                 event.setCancelled(true);
                 return;

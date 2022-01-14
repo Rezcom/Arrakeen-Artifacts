@@ -6,4 +6,8 @@ commands:
   stillsuit:
     description: Gives a stillsuit to the player who calls this command.
     usage: /stillsuit
-    permission: stillsuit.give
+    permission: arrakis.stillsuit.give
+  muaddibcharm:
+    description: Gives a charm to the player who calls this command
+    usage: /muaddibcharm
+    permission: arrakis.charm.give

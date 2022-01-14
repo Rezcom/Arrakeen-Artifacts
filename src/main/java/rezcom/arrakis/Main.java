@@ -5,10 +5,10 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import rezcom.arrakis.stillsuit.EatEvent;
-import rezcom.arrakis.stillsuit.ExhaustEvent;
-import rezcom.arrakis.stillsuit.giveStillsuitCommand;
-import rezcom.arrakis.stillsuit.stillsuitFunctions;
+import rezcom.arrakis.charm.PlayerDiesEvent;
+import rezcom.arrakis.charm.charmFunctions;
+import rezcom.arrakis.charm.giveCharmCommand;
+import rezcom.arrakis.stillsuit.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,17 +45,31 @@ public final class Main extends JavaPlugin {
         sendDebugMessage("Stillsuit initialized.",debugMessages);
         stillsuitFunctions.durabilityReplenish = this.getConfig().getInt("durability-replenish");
 
+        // Initialize the charm item stack
+        charmFunctions.initializeCharm();
+
         // Initialize the probabilities for exhaust events
         ExhaustEvent.initExhaustProbs(this.getConfig());
 
         // Register Commands
-        this.getCommand("stillsuit").setExecutor(new giveStillsuitCommand());
+        try {
+            this.getCommand("stillsuit").setExecutor(new giveStillsuitCommand());
+            this.getCommand("muaddibcharm").setExecutor(new giveCharmCommand());
+        } catch (NullPointerException e){
+            logger.log(Level.SEVERE,"Commands were not initialized correctly! One of the executors returned a nullpointer exception.");
+        }
 
-        // Register Events
+
+        // Register Events for Stillsuit
         getServer().getPluginManager().registerEvents(new ExhaustEvent(), this);
+        getServer().getPluginManager().registerEvents(new GainHPEvent(),this);
         getServer().getPluginManager().registerEvents(new EatEvent(),this);
         getServer().getPluginManager().registerEvents(new CancelResultEvents(),this);
         getServer().getPluginManager().registerEvents(new ItemDamagedEvent(), this);
+
+        // Register Events for Charm
+        getServer().getPluginManager().registerEvents(new PlayerDiesEvent(), this);
+
         logger.log(Level.INFO, "Plugin initialized.");
     }
 

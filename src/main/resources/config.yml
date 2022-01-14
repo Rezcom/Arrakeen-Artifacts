@@ -12,41 +12,41 @@ durability-replenish: 16
 
 exhaust-event:
   ATTACK:
-    default:  0.70
-    savanna: 0.75
-    desert: 0.80
+    default:  0.20
+    savanna: 0.40
+    desert: 0.60
   BLOCK_MINED:
-    default: 0.80
-    savanna: 0.85
-    desert: 0.90
+    default: 0.15
+    savanna: 0.25
+    desert: 0.35
   CROUCH:
     default: 1.0
     savanna: 1.0
     desert: 1.0
   DAMAGED:
-    default: 0.85
-    savanna: 0.90
-    desert: 0.95
+    default: 0.30
+    savanna: 0.40
+    desert: 0.50
   HUNGER_EFFECT:
-    default: 0.40
-    savanna: 0.50
-    desert: 0.60
-  JUMP:
-    default: 0.50
-    savanna: 0.60
-    desert: 0.70
-  JUMP_SPRINT:
-    default: 0.70
-    savanna: 0.80
-    desert: 0.90
-  REGEN:
     default: 0.20
     savanna: 0.25
     desert: 0.30
+  JUMP:
+    default: 0.20
+    savanna: 0.25
+    desert: 0.30
+  JUMP_SPRINT:
+    default: 0.25
+    savanna: 0.35
+    desert: 0.45
+  REGEN:
+    default: 0.10
+    savanna: 0.20
+    desert: 0.30
   SPRINT:
-    default: 0.50
-    savanna: 0.60
-    desert: 0.70
+    default: 0.15
+    savanna: 0.25
+    desert: 0.35
   SWIM:
     default: 1.0
     savanna: 1.0

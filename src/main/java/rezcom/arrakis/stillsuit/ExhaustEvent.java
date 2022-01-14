@@ -105,7 +105,7 @@ public class ExhaustEvent implements Listener {
         }
 
         Random rand = new Random();
-        if (rand.nextDouble() <= 0.1){
+        if (rand.nextDouble() <= 0.01){
             damageable.setDamage(damageable.getDamage() + 1);
             chestplate.setItemMeta(damageable);
         }

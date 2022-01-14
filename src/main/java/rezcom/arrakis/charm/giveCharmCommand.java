@@ -1,5 +1,4 @@
-package rezcom.arrakis.stillsuit;
-
+package rezcom.arrakis.charm;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,31 +9,26 @@ import rezcom.arrakis.Main;
 
 import java.util.logging.Level;
 
+public class giveCharmCommand implements CommandExecutor {
 
-public class giveStillsuitCommand implements CommandExecutor {
-
-    public giveStillsuitCommand(){
+    public giveCharmCommand(){
 
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args){
-        // This is for the /stillsuit command.
         if (!(sender instanceof Player)){
-            // Sent by the console.
             sender.sendMessage("This command can only be used by players.");
             return false;
         }
         Player p = (Player) sender;
-        if (p.hasPermission("arrakis.stillsuit.give")){
-            if (stillsuitFunctions.stillsuitItemStack == null){
-                Main.logger.log(Level.SEVERE,"The stillsuit item stack is null! It wasn't initialized correctly.");
-                return false;
+        if (p.hasPermission("arrakis.charm.give")){
+            if (charmFunctions.charmItemStack == null){
+                Main.logger.log(Level.SEVERE, "The charm itemstack is null! It wasn't initialized correctly.");
             }
-            p.getInventory().addItem(stillsuitFunctions.stillsuitItemStack);
-            p.sendMessage("Stillsuit added to Inventory");
+            p.getInventory().addItem(charmFunctions.charmItemStack);
+            p.sendMessage("Muad'Dib Charm added to Inventory");
             return true;
-
         } else {
             p.sendMessage("You do not have access to that command.");
         }

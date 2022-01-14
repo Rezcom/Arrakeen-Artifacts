@@ -5,9 +5,14 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.generator.BiomeProvider;
+import org.bukkit.generator.WorldInfo;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -16,6 +21,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import rezcom.arrakis.Main;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class stillsuitFunctions {
 
@@ -50,9 +56,8 @@ public class stillsuitFunctions {
             Component.text("survival. It should be handled with care.").color(TextColor.color(0xffd75e)).decoration(TextDecoration.ITALIC, false),
             Component.text(" "),
             Component.text("Recovers the user's moisture, allowing them to").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
-            Component.text("survive longer without sustenance. Provides Fire Resistance,").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
-            Component.text("but is rather fragile under great heat.").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
-            Component.text("Consume fluids while wearing to replenish the suit.").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
+            Component.text("survive longer without sustenance. Consume fluids").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
+            Component.text("while wearing to replenish the suit.").color(TextColor.color(0x5effb5)).decoration(TextDecoration.ITALIC, false),
             Component.text(" "),
             Component.text("Lord, save us from that horrible land!").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
             Component.text("Save us... oh-h-h, save us").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
@@ -90,10 +95,12 @@ public class stillsuitFunctions {
         itemMeta.lore(stillsuitLore);
 
 
-        itemMeta.addEnchant(Enchantment.LURE, 0, true);
+        itemMeta.addEnchant(Enchantment.DURABILITY, 7, true);
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         itemStack.setItemMeta(itemMeta);
+
+
 
         stillsuitItemStack = itemStack;
     }
@@ -138,5 +145,28 @@ public class stillsuitFunctions {
         return Objects.requireNonNull(chestplateMeta.lore()).contains(stillsuitIdentifier);
     }
 
+    public static boolean isItemStillsuit(ItemStack itemStack){
+        if (itemStack.lore() == null){
+            return false;
+        }
+        //Main.logger.log(Level.INFO, "Checking if an item is a stillsuit");
+        return Objects.requireNonNull(itemStack.lore()).contains(stillsuitIdentifier);
+    }
+
+    public static boolean isInBiome(Player p, Biome b){
+
+        if (p == null || b == null){
+            return false;
+        }
+
+        Location playerLocation = p.getLocation();
+        int x = (int) playerLocation.getX();
+        int y = (int) playerLocation.getY();
+        int z = (int) playerLocation.getZ();
+
+        BiomeProvider biomeProvider = p.getWorld().getBiomeProvider();
+        if (biomeProvider == null) { return false; }
+        return biomeProvider.getBiome((WorldInfo) p.getWorld(),x,y,z) == b;
+    }
 
 }

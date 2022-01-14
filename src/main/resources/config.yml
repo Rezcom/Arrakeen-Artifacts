@@ -3,6 +3,72 @@
 # Default is 16, or 1/5th of the durability.
 durability-replenish: 16
 
+# Exhaust Event Multipliers
+# 1.0 means a player takes 100% exhaustion from that event. (No change)
+# 0.5 means a player will only be exhausted by 50% from that event (great!)
+# 0.3 means a player will only be exhausted by 30% from that event (better!)
+# 0.0 means a player will not receive any exhaustion from that event (wow!)
+
+
+exhaust-event:
+  ATTACK:
+    default:  0.70
+    savanna: 0.75
+    desert: 0.80
+  BLOCK_MINED:
+    default: 0.80
+    savanna: 0.85
+    desert: 0.90
+  CROUCH:
+    default: 1.0
+    savanna: 1.0
+    desert: 1.0
+  DAMAGED:
+    default: 0.85
+    savanna: 0.90
+    desert: 0.95
+  HUNGER_EFFECT:
+    default: 0.40
+    savanna: 0.50
+    desert: 0.60
+  JUMP:
+    default: 0.50
+    savanna: 0.60
+    desert: 0.70
+  JUMP_SPRINT:
+    default: 0.70
+    savanna: 0.80
+    desert: 0.90
+  REGEN:
+    default: 0.20
+    savanna: 0.25
+    desert: 0.30
+  SPRINT:
+    default: 0.50
+    savanna: 0.60
+    desert: 0.70
+  SWIM:
+    default: 1.0
+    savanna: 1.0
+    desert: 1.0
+  UNKNOWN: # Probably don't touch this
+    default: 1.0
+    savanna: 1.0
+    desert: 1.0
+  WALK: # Doesn't do anything so far lmao
+    default: 0.20
+    savanna: 0.40
+    desert: 0.60
+  WALK_ON_WATER:
+    default: 0.20
+    savanna: 0.40
+    desert: 0.60
+  WALK_UNDERWATER:
+    default: 0.9
+    savanna: 0.9
+    desert: 0.9
+
+
 # For debugging purposes. Only set true if things aren't working as intended
 # General debugging stuff
 debug-general: false
@@ -12,3 +78,6 @@ debug-EatEvent: false
 
 # Players shouldn't be able to use anvils, crafting tables, etc.
 debug-cancel: false
+
+# Debug exhaustion for stillsuits
+debug-exhaust: false

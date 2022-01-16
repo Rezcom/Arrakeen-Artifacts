@@ -71,9 +71,6 @@ public class stillsuitFunctions {
         // Actually initializes the stillsuit item stack!
         // Please run this VERY EARLY!!
 
-        // Stillsuits are Arrakeen, so adding to main set of all Arrakeen identifiers
-        Main.arrakeenIdentifiers.add(stillsuitIdentifier);
-
         // Set the foods that replenish the suit.
         replenishFoods.add(Material.MILK_BUCKET);
         replenishFoods.add(Material.BEETROOT_SOUP);

@@ -3,11 +3,7 @@ version: '${project.version}'
 main: rezcom.arrakis.Main
 api-version: 1.18
 commands:
-  stillsuit:
-    description: Gives a stillsuit to the player who calls this command.
-    usage: /stillsuit
-    permission: arrakis.stillsuit.give
-  muaddibcharm:
-    description: Gives a charm to the player who calls this command
-    usage: /muaddibcharm
-    permission: arrakis.charm.give
+  giveartifact:
+    description: Gives an artifact of choice.
+    usage: /giveartifact <artifact name>
+    permission: arrakis.giveartifact

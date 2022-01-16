@@ -77,7 +77,11 @@ debug-general: false
 debug-EatEvent: false
 
 # Players shouldn't be able to use anvils, crafting tables, etc.
-debug-cancel: false
+debug-stillsuit-cancel: false
+debug-charm-cancel: false
+
+# Debug the give artifact command
+debug-give-command: false
 
 # Debug exhaustion for stillsuits
 debug-exhaust: false

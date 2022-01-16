@@ -14,6 +14,7 @@ import rezcom.arrakis.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class charmFunctions implements Listener {
 
@@ -49,8 +50,6 @@ public class charmFunctions implements Listener {
         // Initializes the charm item stack!
         // Please call this VERY early!
 
-        Main.arrakeenIdentifiers.add(charmIdentifier);
-
         // Build the charm item stack
         ItemStack itemStack = new ItemStack(Material.CLOCK);
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -64,5 +63,11 @@ public class charmFunctions implements Listener {
         itemStack.setItemMeta(itemMeta);
 
         charmItemStack = itemStack;
+    }
+
+    public static boolean isItemMuaddibCharm(ItemStack item){
+        // Is this item a charm?
+        if (item == null || (!item.hasItemMeta())){ return false; }
+        return Objects.requireNonNull(item.getItemMeta().lore()).contains(charmIdentifier);
     }
 }

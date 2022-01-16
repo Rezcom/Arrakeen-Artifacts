@@ -6,5 +6,7 @@ import org.bukkit.event.Listener;
 public class PotionMakeEvent implements Listener {
 
     @EventHandler
-    void onPotionMaking()
+    void onPotionMaking(){
+
+    }
 }

@@ -67,7 +67,7 @@ public class charmFunctions implements Listener {
 
     public static boolean isItemMuaddibCharm(ItemStack item){
         // Is this item a charm?
-        if (item == null || (!item.hasItemMeta())){ return false; }
+        if (item == null || (!item.hasItemMeta()) || (!item.getItemMeta().hasLore())){ return false; }
         return Objects.requireNonNull(item.getItemMeta().lore()).contains(charmIdentifier);
     }
 }

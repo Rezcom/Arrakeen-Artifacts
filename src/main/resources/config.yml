@@ -83,5 +83,8 @@ debug-charm-cancel: false
 # Debug the give artifact command
 debug-give-command: false
 
+# Debug brewer
+debug-brewer: false
+
 # Debug exhaustion for stillsuits
 debug-exhaust: false

@@ -71,10 +71,10 @@ public class StillsuitPrepareEvents implements Listener {
 
     // Prevent a player from using grindstone
     // Deprecated..?
-    @EventHandler
+    /*@EventHandler
     void onPlayerGrindstone(PrepareGrindstoneEvent event){
 
-        /*
+
         Main.sendDebugMessage("Grindstone event triggered",cancelDebug);
         GrindstoneInventory grindstoneInventory = event.getInventory();
         ItemStack upperItem = grindstoneInventory.getUpperItem();
@@ -100,6 +100,6 @@ public class StillsuitPrepareEvents implements Listener {
                     return;
                 }
             }
-        }*/
-    }
+        }
+    }*/
 }

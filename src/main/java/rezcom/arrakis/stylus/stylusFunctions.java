@@ -6,6 +6,7 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -30,13 +31,13 @@ public class stylusFunctions implements Listener {
             stylusIdentifier,
             Component.text(" "),
             Component.text("An esoteric alchemy tool from a distant, harsh world.").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
-            Component.text("Used by a powerful society of people, this tool is an lasting").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
-            Component.text("remnant of their knowledge and mastery of various poisons.").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
-            Component.text("Perhaps it may still serve a purpose in this world.").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
+            Component.text("Used by a powerful society of witches, this tool is an lasting").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
+            Component.text("remnant of their mastery of various poisons. It's been").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
+            Component.text("modified to increase moisture preservation and efficiency.").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
             Component.text(" "),
             Component.text("Upon creating a potion, the user has a small chance").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
             Component.text("to create an additional. Keep it in hand to use.").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
-            Component.text("Replenish with Prismarine Crystals").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
+            Component.text("Requires and consumes 10 levels upon usage.").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
             Component.text(" "),
             Component.text("There is no reality —").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC,true),
             Component.text("only our own order imposed on everything.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC,true)
@@ -63,8 +64,17 @@ public class stylusFunctions implements Listener {
         stylusItemStack = itemStack;
     }
 
+    public static boolean isPlayerHoldingStylus(Player player){
+        // Returns if the player is holding the stylus in either hand
+
+        ItemStack mainStack = player.getInventory().getItemInMainHand();
+        ItemStack offhandStack = player.getInventory().getItemInOffHand();
+
+        return isItemBeneGesseritStylus(mainStack) || isItemBeneGesseritStylus(offhandStack);
+    }
+
     public static boolean isItemBeneGesseritStylus(ItemStack item){
-        if (item == null || (!item.hasItemMeta())){ return false; }
+        if (item == null || (!item.hasItemMeta()) || (!item.getItemMeta().hasLore())){ return false; }
         return Objects.requireNonNull(item.getItemMeta().lore()).contains(stylusIdentifier);
     }
 }

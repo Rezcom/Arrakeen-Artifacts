@@ -23,7 +23,7 @@ public class giveArtifactCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args){
-        // This is for the /stillsuit command.
+
 
         if (args.length != 1){
             sender.sendMessage("Enter name of artifact you want given.");

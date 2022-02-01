@@ -28,7 +28,7 @@ public class GainHPEvent implements Listener {
             Main.sendDebugMessage("Player is wearing a stillsuit",debugHP);
 
             ItemStack chestplate = player.getInventory().getChestplate();
-            if (chestplate == null || !stillsuitFunctions.isItemStillsuit(chestplate)){ return;}
+            if (chestplate == null || !stillsuitFunctions.isItemStillsuit(chestplate)){ return; }
             Material material = chestplate.getType();
             Damageable damageable = (Damageable) chestplate.getItemMeta();
             if (damageable == null || damageable.getDamage() == material.getMaxDurability() - 1){ return; }

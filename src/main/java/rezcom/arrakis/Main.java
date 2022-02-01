@@ -6,6 +6,9 @@ import rezcom.arrakis.charm.CharmPrepareEvents;
 import rezcom.arrakis.charm.PlayerDiesEvent;
 import rezcom.arrakis.charm.charmFunctions;
 import rezcom.arrakis.stillsuit.*;
+import rezcom.arrakis.stylus.BrewingStandEvents;
+import rezcom.arrakis.stylus.GesseritMobCommand;
+import rezcom.arrakis.stylus.GesseritMobDeath;
 import rezcom.arrakis.stylus.stylusFunctions;
 
 import java.util.logging.Level;
@@ -39,6 +42,7 @@ public final class Main extends JavaPlugin {
         // Register Commands
         try {
             this.getCommand("giveartifact").setExecutor(new giveArtifactCommand());
+            this.getCommand("gesseritmob").setExecutor(new GesseritMobCommand());
         } catch (NullPointerException e){
             logger.log(Level.SEVERE,"Commands were not initialized correctly! One of the executors returned a nullpointer exception.");
         }
@@ -59,6 +63,9 @@ public final class Main extends JavaPlugin {
 
          // Initialize stylus item stack
          stylusFunctions.initializeStylus();
+
+         // Initialize Stray custom bow
+         GesseritMobCommand.initializeStrayEquipment();
     }
 
     private void initializeDebugBooleans(){
@@ -69,6 +76,9 @@ public final class Main extends JavaPlugin {
 
         StillsuitPrepareEvents.cancelStillsuitDebug = this.getConfig().getBoolean("debug-stillsuit-cancel");
         CharmPrepareEvents.cancelCharmDebug = this.getConfig().getBoolean("debug-charm-cancel");
+        BrewingStandEvents.brewDebug = this.getConfig().getBoolean("debug-brewer");
+
+
         giveArtifactCommand.debugGiveCommand = this.getConfig().getBoolean("debug-give-command");
 
         ExhaustEvent.debugExhaustEvent = this.getConfig().getBoolean("debug-exhaust");
@@ -79,6 +89,7 @@ public final class Main extends JavaPlugin {
         // Initializes all events
 
         // Register Events for Stillsuit
+        getServer().getPluginManager().registerEvents(new CauldronEvent(), this);
         getServer().getPluginManager().registerEvents(new ExhaustEvent(), this);
         getServer().getPluginManager().registerEvents(new GainHPEvent(),this);
         getServer().getPluginManager().registerEvents(new EatEvent(),this);
@@ -88,6 +99,11 @@ public final class Main extends JavaPlugin {
         // Register Events for Charm
         getServer().getPluginManager().registerEvents(new PlayerDiesEvent(), this);
         getServer().getPluginManager().registerEvents(new CharmPrepareEvents(), this);
+
+        // Register Events for Stylus
+        getServer().getPluginManager().registerEvents(new BrewingStandEvents(), this);
+        getServer().getPluginManager().registerEvents(new GesseritMobDeath(), this);
+
     }
 
     @Override

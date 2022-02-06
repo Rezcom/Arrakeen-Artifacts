@@ -7,7 +7,6 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -21,7 +20,6 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import rezcom.arrakis.Main;
 
 import java.util.*;
-import java.util.logging.Level;
 
 public class stillsuitFunctions {
 

@@ -7,7 +7,6 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class stylusFunctions implements Listener {
+public class stylusFunctions {
 
     // Name
     private static final TextComponent stylusName =
@@ -31,7 +30,7 @@ public class stylusFunctions implements Listener {
             stylusIdentifier,
             Component.text(" "),
             Component.text("An esoteric alchemy tool from a distant, harsh world.").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
-            Component.text("Used by a powerful society of witches, this tool is an lasting").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
+            Component.text("Used by a powerful society of witches, this tool is a lasting").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
             Component.text("remnant of their mastery of various poisons. It's been").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
             Component.text("modified to increase moisture preservation and efficiency.").color(TextColor.color(0xf47cab)).decoration(TextDecoration.ITALIC,false),
             Component.text(" "),

@@ -7,7 +7,7 @@ commands:
     description: Gives an artifact of choice.
     usage: /giveartifact <artifact name>
     permission: arrakis.giveartifact
-  gesseritmob:
+  lessersoulmob:
     description: Spawns a powerful foe with a Bene Gesserit Stylus
-    usage: /gesseritmob
+    usage: /lessersoulmob
     permission: arrakis.gesseritmob

@@ -1,14 +1,21 @@
 package rezcom.arrakis;
 
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import rezcom.arrakis.charm.CharmPrepareEvents;
 import rezcom.arrakis.charm.PlayerDiesEvent;
 import rezcom.arrakis.charm.charmFunctions;
+import rezcom.arrakis.dilapidatedbow.dilapidatedBowEvents;
+import rezcom.arrakis.dilapidatedbow.dilapidatedBowFunc;
+import rezcom.arrakis.fragments.soulFragmentEvents;
+import rezcom.arrakis.fragments.soulFragmentFunctions;
+import rezcom.arrakis.ixian.ixianConsumeEvent;
+import rezcom.arrakis.ixian.ixianFunctions;
 import rezcom.arrakis.stillsuit.*;
 import rezcom.arrakis.stylus.BrewingStandEvents;
-import rezcom.arrakis.stylus.GesseritMobCommand;
-import rezcom.arrakis.stylus.GesseritMobDeath;
+import rezcom.arrakis.bosses.HollowWitchCommand;
+import rezcom.arrakis.bosses.HollowWitchEvents;
 import rezcom.arrakis.stylus.stylusFunctions;
 
 import java.util.logging.Level;
@@ -19,11 +26,15 @@ public final class Main extends JavaPlugin {
     public static boolean debugMessages = false;
     public static Logger logger;
 
+    public static Plugin thisPlugin;
+
     // Set of Arrakeen items, which should not be crafted, enchanted, grindstone, etc.
     // Holds text components to identify items as from this plugin, Arrakeen.
 
     @Override
     public void onEnable() {
+        thisPlugin = this;
+
         logger = this.getLogger();
         logger.log(Level.INFO, "Initializing plugin.");
 
@@ -42,7 +53,7 @@ public final class Main extends JavaPlugin {
         // Register Commands
         try {
             this.getCommand("giveartifact").setExecutor(new giveArtifactCommand());
-            this.getCommand("gesseritmob").setExecutor(new GesseritMobCommand());
+            this.getCommand("lessersoulmob").setExecutor(new HollowWitchCommand());
         } catch (NullPointerException e){
             logger.log(Level.SEVERE,"Commands were not initialized correctly! One of the executors returned a nullpointer exception.");
         }
@@ -52,6 +63,9 @@ public final class Main extends JavaPlugin {
 
      private void initializeItemStacks(){
         // Initializes all item stacks for the artifacts. Call this early!
+
+         // Fragments
+         soulFragmentFunctions.initializeFragments();
 
         // Stillsuit
         stillsuitFunctions.initializeStillsuit();
@@ -65,7 +79,13 @@ public final class Main extends JavaPlugin {
          stylusFunctions.initializeStylus();
 
          // Initialize Stray custom bow
-         GesseritMobCommand.initializeStrayEquipment();
+         HollowWitchCommand.initializeStrayEquipment();
+
+         // Dilapidated Bow
+         dilapidatedBowFunc.initializeDilapidatedBow();
+
+         // Ixian Probe
+         ixianFunctions.initializeIxian();
     }
 
     private void initializeDebugBooleans(){
@@ -88,6 +108,9 @@ public final class Main extends JavaPlugin {
     private void initializeEvents(){
         // Initializes all events
 
+        // Register Events for Ixian Probe
+        getServer().getPluginManager().registerEvents(new ixianConsumeEvent(), this);
+
         // Register Events for Stillsuit
         getServer().getPluginManager().registerEvents(new CauldronEvent(), this);
         getServer().getPluginManager().registerEvents(new ExhaustEvent(), this);
@@ -102,8 +125,13 @@ public final class Main extends JavaPlugin {
 
         // Register Events for Stylus
         getServer().getPluginManager().registerEvents(new BrewingStandEvents(), this);
-        getServer().getPluginManager().registerEvents(new GesseritMobDeath(), this);
+        getServer().getPluginManager().registerEvents(new HollowWitchEvents(), this);
 
+        // Register Events for Soul Fragments
+        getServer().getPluginManager().registerEvents(new soulFragmentEvents(),this);
+
+        // Register Events for Dilapidated Bow
+        getServer().getPluginManager().registerEvents(new dilapidatedBowEvents(),this);
     }
 
     @Override
@@ -116,4 +144,5 @@ public final class Main extends JavaPlugin {
             logger.log(Level.INFO, string);
         }
     }
+
 }

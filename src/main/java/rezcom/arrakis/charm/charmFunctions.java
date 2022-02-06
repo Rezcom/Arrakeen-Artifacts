@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class charmFunctions implements Listener {
+public class charmFunctions {
 
     // Name
     private static final TextComponent charmName =
@@ -57,7 +57,7 @@ public class charmFunctions implements Listener {
         itemMeta.displayName(charmName);
         itemMeta.lore(charmLore);
 
-        itemMeta.addEnchant(Enchantment.LURE,0,false);
+        itemMeta.addEnchant(Enchantment.LURE,0,true);
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         itemStack.setItemMeta(itemMeta);

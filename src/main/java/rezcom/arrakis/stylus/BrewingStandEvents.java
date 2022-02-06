@@ -1,6 +1,5 @@
 package rezcom.arrakis.stylus;
 
-import io.papermc.paper.event.block.BlockBreakBlockEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -9,7 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BrewingStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -93,7 +91,7 @@ public class BrewingStandEvents implements Listener {
 		}
 
 		Random rand = new Random();
-		if (rand.nextDouble() <= 0.2){
+		if (rand.nextDouble() <= 0.32){
 			player.setLevel(playerLevel - 10);
 
 			player.playSound(player.getLocation(), Sound.ITEM_SPYGLASS_USE,0.8f,0.4f);

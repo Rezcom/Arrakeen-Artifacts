@@ -1,8 +1,9 @@
-package rezcom.arrakis.stylus;
+package rezcom.arrakis.bosses;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,29 +20,28 @@ import rezcom.arrakis.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
-public class GesseritMobCommand implements CommandExecutor {
+public class HollowWitchCommand implements CommandExecutor {
 
 	public static ItemStack customBow;
 	public static ItemStack customChestplate;
 	public static ItemStack customHelmet;
 	public static ItemStack customBoots;
 
-	public static boolean strayDebug = true;
+	public static boolean strayDebug = false;
 
 	public static final Component customBowIdentifier =
-			Component.text("Fear is the mind killer.").color(TextColor.color(0xFB3232));
+			Component.text("is to change the nature of truth.").color(TextColor.color(0xFB3232));
 
 	public static final ArrayList<Component> customBowLore = new ArrayList<>(Arrays.asList(
-			Component.text("I must not fear.").color(TextColor.color(0xF7892B)),
+			Component.text("The purpose of argument").color(TextColor.color(0xF7892B)),
 			customBowIdentifier
 	));
 
 	public static final Component customBowName =
 			Component.text("Dilapidated Bow").color(TextColor.color(0xFF00FF));
 
-	public GesseritMobCommand(){
+	public HollowWitchCommand(){
 
 	}
 
@@ -65,7 +65,7 @@ public class GesseritMobCommand implements CommandExecutor {
 		chestplateMeta.addEnchant(Enchantment.PROTECTION_PROJECTILE,100,true);
 		chestplateMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS,140,true);
 		chestplateMeta.addEnchant(Enchantment.DURABILITY,40,true);
-		chestplateMeta.addEnchant(Enchantment.THORNS,1,true);
+		chestplateMeta.addEnchant(Enchantment.THORNS,3,true);
 
 		chestplate.setItemMeta(chestplateMeta);
 		customChestplate = chestplate;
@@ -95,7 +95,7 @@ public class GesseritMobCommand implements CommandExecutor {
 			return false;
 		}
 		Player player = (Player) sender;
-		if (!(player.hasPermission("arrakis.gesseritmob"))){
+		if (!(player.hasPermission("arrakis.lessersoulmob"))){
 			Main.sendDebugMessage("Didn't have permission",strayDebug);
 			player.sendMessage("You do not have permission.");
 			return false;
@@ -107,7 +107,7 @@ public class GesseritMobCommand implements CommandExecutor {
 
 		Main.sendDebugMessage("Spawned, now modifying",strayDebug);
 
-		stray.setCustomName("§3Hollow Witch");
+		stray.setCustomName("§3Hollow Soul");
 		stray.setCustomNameVisible(true);
 		stray.setHealth(20.0);
 		stray.setArrowsInBody(7);
@@ -118,6 +118,12 @@ public class GesseritMobCommand implements CommandExecutor {
 		stray.setCollidable(false);
 		stray.setVisualFire(true);
 		stray.setAI(true);
+
+		try {
+			stray.getAttribute(Attribute.GENERIC_FOLLOW_RANGE).setBaseValue(80);
+		} catch (NullPointerException e){
+			Main.sendDebugMessage("Follow range was null!!!",strayDebug);
+		}
 
 		Main.sendDebugMessage("Custom stuff done. Gonna add equipment",strayDebug);
 
@@ -131,9 +137,11 @@ public class GesseritMobCommand implements CommandExecutor {
 
 		PotionEffect resistance = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,Integer.MAX_VALUE,3);
 		PotionEffect fireResist = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 1);
+		PotionEffect speedEffect = new PotionEffect(PotionEffectType.SPEED,Integer.MAX_VALUE,1);
 
 		stray.addPotionEffect(resistance);
 		stray.addPotionEffect(fireResist);
+		stray.addPotionEffect(speedEffect);
 		Main.sendDebugMessage("Everything done",strayDebug);
 
 		player.sendMessage("Spawned a Hollow Witch");

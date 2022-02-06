@@ -30,7 +30,15 @@ public class ixianFunctions {
 			Component.text("An invasive device left from a harsh, distant world.").color(TextColor.color(0x16c96c)).decoration(TextDecoration.ITALIC,false),
 			Component.text("It is said that it looks at brain tissue so carefully").color(TextColor.color(0x16c96c)).decoration(TextDecoration.ITALIC,false),
 			Component.text("that memories can be seen. It was often used in").color(TextColor.color(0x16c96c)).decoration(TextDecoration.ITALIC,false),
-			Component.text("interrogations and thought analysis.").color(TextColor.color(0x16c96c)).decoration(TextDecoration.ITALIC,false)
+			Component.text("interrogations and thought analysis.").color(TextColor.color(0x16c96c)).decoration(TextDecoration.ITALIC,false),
+			Component.text(" "),
+			Component.text("Allows the user to convert their experience").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
+			Component.text("points to Mending enchanted items. Hold a").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
+			Component.text("sufficiently enchanted item while wearing, and").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
+			Component.text("drink fluids to utilize. Consumes 10 levels.").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
+			Component.text(" "),
+			Component.text("What do you despise?").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
+			Component.text("By this are you truly known.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true)
 	)));
 
 	public static ItemStack ixianItemStack = null;

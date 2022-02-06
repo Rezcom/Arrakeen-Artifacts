@@ -3,6 +3,7 @@ package rezcom.arrakis.ixian;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,10 +12,12 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import rezcom.arrakis.Main;
 import rezcom.arrakis.stillsuit.stillsuitFunctions;
 
 public class ixianConsumeEvent implements Listener {
 
+	public static boolean ixianDebug = false;
 	public static final Component playerMessage =
 			Component.text("Inner memories have cleansed an item.").color(TextColor.color(0x0CCF2A)).decoration(TextDecoration.ITALIC,false);
 
@@ -22,25 +25,34 @@ public class ixianConsumeEvent implements Listener {
 	void onPlayerDrink(PlayerItemConsumeEvent event){
 		Player player = event.getPlayer();
 		ItemStack foodItem = event.getItem();
-
+		Main.sendDebugMessage("Ixian proc",ixianDebug);
 		if (ixianFunctions.isWearingIxian(player) && stillsuitFunctions.replenishFoods.contains(foodItem.getType()) && player.getLevel() >= 10){
 			// Player is wearing ixian probe
+			Main.sendDebugMessage("Wearing ixian",ixianDebug);
 			ItemStack leftHand = player.getInventory().getItemInOffHand();
 			ItemMeta leftMeta = leftHand.getItemMeta();
 
 			ItemStack rightHand = player.getInventory().getItemInMainHand();
 			ItemMeta rightMeta = rightHand.getItemMeta();
-			if (leftMeta.hasEnchant(Enchantment.MENDING)){
-				Damageable damageable = (Damageable) leftMeta;
-				damageable.setDamage(Math.min(damageable.getDamage() - 710,0));
-				player.setLevel(player.getLevel() - 10);
-				player.sendMessage(playerMessage);
-			} else if (rightMeta.hasEnchant(Enchantment.MENDING)){
-				Damageable damageable = (Damageable) rightMeta;
-				damageable.setDamage(Math.min(damageable.getDamage() - 710,0));
-				player.setLevel(player.getLevel() - 10);
-				player.sendMessage(playerMessage);
+			if (leftMeta != null && leftMeta.hasEnchant(Enchantment.MENDING)){
+				Main.sendDebugMessage("left hand had it",ixianDebug);
+				useIxian(player,leftHand);
+			} else if (rightMeta != null && rightMeta.hasEnchant(Enchantment.MENDING)){
+				Main.sendDebugMessage("right hand had it",ixianDebug);
+				useIxian(player, rightHand);
 			}
 		}
+	}
+
+	private static void useIxian(Player player, ItemStack itemStack){
+		ItemMeta itemMeta = itemStack.getItemMeta();
+		Damageable damageable = (Damageable) itemMeta;
+		damageable.setDamage(Math.max(damageable.getDamage() - 710,0));
+		itemStack.setItemMeta(damageable);
+		player.setLevel(player.getLevel() - 10);
+		player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 0.6f, 1.5f);
+		player.playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_LOOP_ADDITIONS, 0.25f, 0.55f);
+		player.playSound(player.getLocation(), Sound.AMBIENT_WARPED_FOREST_MOOD, 0.25f, 0.3f);
+		player.sendMessage(playerMessage);
 	}
 }

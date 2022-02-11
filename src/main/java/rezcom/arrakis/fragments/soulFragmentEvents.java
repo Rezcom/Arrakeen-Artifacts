@@ -33,8 +33,16 @@ public class soulFragmentEvents implements Listener {
 		AnvilInventory inventory = event.getInventory();
 		ItemStack firstItem = inventory.getFirstItem();
 		ItemStack secondItem = inventory.getSecondItem();
-		if (soulFragmentFunctions.isFragmentA(firstItem) || soulFragmentFunctions.isFragmentA(secondItem)){
+
+		if (!soulFragmentFunctions.isFragment(firstItem) && soulFragmentFunctions.isFragment(secondItem)){
+			// First item isn't a fragment, but second one is.
+			// Nothing happens.
 			event.setResult(null);
+
+		} else if (soulFragmentFunctions.isFragment(firstItem) || soulFragmentFunctions.isFragment(secondItem)){
+			// First item is a fragment.
+			ValidAnvilFragments.validateAnvil(event);
 		}
+
 	}
 }

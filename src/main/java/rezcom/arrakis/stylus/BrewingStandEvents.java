@@ -85,14 +85,16 @@ public class BrewingStandEvents implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		int playerLevel = player.getLevel();
 
-		if (playerLevel < 10 || (!stylusFunctions.isPlayerHoldingStylus(player))){
-			Main.sendDebugMessage("Player wasn't level 10, and/or not holding stylus",brewDebug);
+		if (!stylusFunctions.isPlayerHoldingStylus(player)){
+			Main.sendDebugMessage("Player wasn't holding stylus",brewDebug);
 			return;
 		}
 
 		Random rand = new Random();
-		if (rand.nextDouble() <= 0.32){
-			player.setLevel(playerLevel - 10);
+		double chanceLevel = (playerLevel >= 25 ? 0.25 : 0.10);
+		Main.sendDebugMessage("NUM TO GO UNDER: " + chanceLevel,brewDebug);
+		if (rand.nextDouble() <= chanceLevel){
+			//player.setLevel(playerLevel - 10);
 
 			player.playSound(player.getLocation(), Sound.ITEM_SPYGLASS_USE,0.8f,0.4f);
 			player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT,0.25f,1.5f);

@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
+import rezcom.arrakis.crysknife.crysknifeFunctions;
 import rezcom.arrakis.ixian.ixianFunctions;
 import rezcom.arrakis.stillsuit.stillsuitFunctions;
 
@@ -19,6 +20,8 @@ public class ItemDamagedEvent implements Listener {
             //Main.logger.log(Level.INFO,"Stillsuit took damage");
             event.setCancelled(true);
         } else if (ixianFunctions.isItemIxian(itemStack)){
+            event.setCancelled(true);
+        } else if (crysknifeFunctions.isItemCrysknife(itemStack)){
             event.setCancelled(true);
         }
     }

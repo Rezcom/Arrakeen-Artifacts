@@ -36,7 +36,7 @@ public class stylusFunctions {
             Component.text(" "),
             Component.text("Upon creating a potion, the user has a small chance").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
             Component.text("to create an additional. Keep it in hand to use.").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
-            Component.text("Requires and consumes 10 levels upon usage.").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
+            Component.text("Odds are increased for Level 25+ users.").color(TextColor.color(0x2bf7ad)).decoration(TextDecoration.ITALIC,false),
             Component.text(" "),
             Component.text("There is no reality —").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC,true),
             Component.text("only our own order imposed on everything.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC,true)

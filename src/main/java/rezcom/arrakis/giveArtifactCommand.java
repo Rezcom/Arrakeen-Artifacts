@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import rezcom.arrakis.charm.charmFunctions;
+import rezcom.arrakis.crysknife.crysknifeFunctions;
 import rezcom.arrakis.ixian.ixianFunctions;
 import rezcom.arrakis.stillsuit.stillsuitFunctions;
 import rezcom.arrakis.stylus.stylusFunctions;
@@ -82,6 +83,16 @@ public class giveArtifactCommand implements CommandExecutor {
                     }
                     p.getInventory().addItem(ixianFunctions.ixianItemStack);
                     p.sendMessage("Ixian Probe added to Inventory");
+                    return true;
+
+                case "crysknife":
+                    if (crysknifeFunctions.crysknifeStack == null){
+                        sender.sendMessage("The Crysknife stack is null! It wasn't initialized correctly.");
+                        Main.logger.log(Level.SEVERE,"The Crysknife stack is null! It wasn't initialized correctly.");
+                        return false;
+                    }
+                    p.getInventory().addItem(crysknifeFunctions.crysknifeStack);
+                    p.sendMessage("Crysknife added to Inventory.");
                     return true;
             }
 

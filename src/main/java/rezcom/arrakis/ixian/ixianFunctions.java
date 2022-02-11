@@ -19,7 +19,7 @@ import java.util.Objects;
 public class ixianFunctions {
 
 	private static final TextComponent ixianName =
-			Component.text("Ixian Probe").color(TextColor.color(0xf93f90)).decoration(TextDecoration.ITALIC,false);
+			Component.text("Ixian Probe").color(TextColor.color(0xf93f90)).decoration(TextDecoration.ITALIC,true);
 
 	private static final Component ixianIdentifier =
 			Component.text("Arrakeen Artifact - Heretical Device").color(TextColor.color(0x40a8ed)).decoration(TextDecoration.ITALIC,false).decoration(TextDecoration.UNDERLINED,true);
@@ -35,10 +35,12 @@ public class ixianFunctions {
 			Component.text("Allows the user to convert their experience").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
 			Component.text("points to Mending enchanted items. Hold a").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
 			Component.text("sufficiently enchanted item while wearing, and").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
-			Component.text("drink fluids to utilize. Consumes 10 levels.").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
+			Component.text("drink fluids to utilize. Converts 10 levels.").color(TextColor.color(0xff45b8)).decoration(TextDecoration.ITALIC,false),
 			Component.text(" "),
-			Component.text("What do you despise?").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
-			Component.text("By this are you truly known.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true)
+			Component.text("Tell me of thy sleeping").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
+			Component.text("And I will tell thee of thy waking.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
+			Component.text("Tell me of thy desires").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
+			Component.text("And I will tell thee of thy need.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true)
 	)));
 
 	public static ItemStack ixianItemStack = null;

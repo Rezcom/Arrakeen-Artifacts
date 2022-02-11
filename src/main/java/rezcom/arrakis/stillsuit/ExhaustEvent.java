@@ -105,8 +105,9 @@ public class ExhaustEvent implements Listener {
         }
 
         Random rand = new Random();
+        int levelChance = rand.nextDouble() <= 0.75 ? 1 : 0;
         if (rand.nextDouble() <= 0.01){
-            damageable.setDamage(damageable.getDamage() + 1);
+            damageable.setDamage(damageable.getDamage() + (player.getLevel() >= 20 ? levelChance : 1));
             chestplate.setItemMeta(damageable);
         }
 

@@ -11,3 +11,7 @@ commands:
     description: Spawns a powerful foe with a Bene Gesserit Stylus
     usage: /lessersoulmob
     permission: arrakis.gesseritmob
+  vagrantspiritmob:
+    description: Spawns the Vagrant Spirit
+    usage: /vagrantspiritmob
+    permission: arrakis.vagrantspiritmob

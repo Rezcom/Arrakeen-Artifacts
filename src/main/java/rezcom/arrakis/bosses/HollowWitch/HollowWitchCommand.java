@@ -1,4 +1,4 @@
-package rezcom.arrakis.bosses;
+package rezcom.arrakis.bosses.HollowWitch;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -134,6 +134,12 @@ public class HollowWitchCommand implements CommandExecutor {
 		entityEquipment.setChestplate(customChestplate);
 		entityEquipment.setHelmet(customHelmet);
 		entityEquipment.setBoots(customBoots);
+
+		entityEquipment.setItemInMainHandDropChance(0.0f);
+		entityEquipment.setHelmetDropChance(0.0f);
+		entityEquipment.setChestplateDropChance(0.0f);
+		entityEquipment.setLeggingsDropChance(0.0f);
+		entityEquipment.setBootsDropChance(0.0f);
 
 		PotionEffect resistance = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,Integer.MAX_VALUE,3);
 		PotionEffect fireResist = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 1);

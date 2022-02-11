@@ -22,6 +22,8 @@ public class dilapidatedBowEvents implements Listener {
 	private static final Component playerMessage =
 			Component.text("Your weapon cannot shoot any longer! It must be replenished.").color(TextColor.color(0xf86363)).decoration(TextDecoration.ITALIC,true);
 
+	private static final Component playerLevelMessage =
+			Component.text("Your weapon cannot shoot, as you are not Level 30.").color(TextColor.color(0xf86363)).decoration(TextDecoration.ITALIC,true);
 	@EventHandler
 	void onPlayerShoot(EntityShootBowEvent event){
 		if (!(event.getEntity() instanceof Player)){
@@ -38,6 +40,9 @@ public class dilapidatedBowEvents implements Listener {
 			event.setCancelled(true);
 			player.sendMessage(playerMessage);
 
+		} else if (player.getLevel() < 30){
+			event.setCancelled(true);
+			player.sendMessage(playerLevelMessage);
 		}
 
 	}
@@ -56,6 +61,7 @@ public class dilapidatedBowEvents implements Listener {
 			if (secondItem == null || (!(secondItem.getType() == Material.NETHERITE_BLOCK && secondItem.getAmount() == 1))){
 				event.setResult(null);
 			} else {
+				anvilInventory.setRepairCost(15);
 				event.setResult(dilapidatedBowFunc.bowItemStack);
 			}
 

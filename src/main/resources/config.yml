@@ -88,3 +88,6 @@ debug-brewer: false
 
 # Debug exhaustion for stillsuits
 debug-exhaust: false
+
+# Debug HP for stillsuits
+debu-stillsuit-hp: false

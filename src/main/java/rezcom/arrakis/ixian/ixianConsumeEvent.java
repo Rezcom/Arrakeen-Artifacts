@@ -47,12 +47,28 @@ public class ixianConsumeEvent implements Listener {
 	private static void useIxian(Player player, ItemStack itemStack){
 		ItemMeta itemMeta = itemStack.getItemMeta();
 		Damageable damageable = (Damageable) itemMeta;
-		damageable.setDamage(Math.max(damageable.getDamage() - 710,0));
+		damageable.setDamage(Math.max(damageable.getDamage() - determineDurabilityGain(player),0));
 		itemStack.setItemMeta(damageable);
 		player.setLevel(player.getLevel() - 10);
-		player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 0.6f, 1.5f);
-		player.playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_LOOP_ADDITIONS, 0.25f, 0.55f);
-		player.playSound(player.getLocation(), Sound.AMBIENT_WARPED_FOREST_MOOD, 0.25f, 0.3f);
+		player.playSound(player.getLocation(), Sound.BLOCK_BELL_USE, 0.8f, 1.5f);
+		player.playSound(player.getLocation(), Sound.BLOCK_BELL_RESONATE, 0.75f, 0.55f);
+		player.playSound(player.getLocation(), Sound.BLOCK_BEACON_DEACTIVATE, 0.75f, 0.3f);
 		player.sendMessage(playerMessage);
 	}
+
+	private static int determineDurabilityGain(Player player){
+		int level = player.getLevel();
+		if (level < 10){
+			return 0;
+		}else if (level == 10){
+			return 160;
+		} else if (level <= 20){
+			return 585;
+		} else if (level <= 30){
+			return 1268;
+		} else {
+			return 2288;
+		}
+	}
+
 }

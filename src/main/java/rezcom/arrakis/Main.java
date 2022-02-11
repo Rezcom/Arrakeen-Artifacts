@@ -3,9 +3,13 @@ package rezcom.arrakis;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import rezcom.arrakis.bosses.VagrantSpirit.VagrantSpiritCommand;
+import rezcom.arrakis.bosses.VagrantSpirit.VagrantSpiritEvents;
 import rezcom.arrakis.charm.CharmPrepareEvents;
 import rezcom.arrakis.charm.PlayerDiesEvent;
 import rezcom.arrakis.charm.charmFunctions;
+import rezcom.arrakis.crysknife.crysknifeEvents;
+import rezcom.arrakis.crysknife.crysknifeFunctions;
 import rezcom.arrakis.dilapidatedbow.dilapidatedBowEvents;
 import rezcom.arrakis.dilapidatedbow.dilapidatedBowFunc;
 import rezcom.arrakis.fragments.soulFragmentEvents;
@@ -14,8 +18,8 @@ import rezcom.arrakis.ixian.ixianConsumeEvent;
 import rezcom.arrakis.ixian.ixianFunctions;
 import rezcom.arrakis.stillsuit.*;
 import rezcom.arrakis.stylus.BrewingStandEvents;
-import rezcom.arrakis.bosses.HollowWitchCommand;
-import rezcom.arrakis.bosses.HollowWitchEvents;
+import rezcom.arrakis.bosses.HollowWitch.HollowWitchCommand;
+import rezcom.arrakis.bosses.HollowWitch.HollowWitchEvents;
 import rezcom.arrakis.stylus.stylusFunctions;
 
 import java.util.logging.Level;
@@ -54,6 +58,7 @@ public final class Main extends JavaPlugin {
         try {
             this.getCommand("giveartifact").setExecutor(new giveArtifactCommand());
             this.getCommand("lessersoulmob").setExecutor(new HollowWitchCommand());
+            this.getCommand("vagrantspiritmob").setExecutor(new VagrantSpiritCommand());
         } catch (NullPointerException e){
             logger.log(Level.SEVERE,"Commands were not initialized correctly! One of the executors returned a nullpointer exception.");
         }
@@ -78,14 +83,20 @@ public final class Main extends JavaPlugin {
          // Initialize stylus item stack
          stylusFunctions.initializeStylus();
 
-         // Initialize Stray custom bow
-         HollowWitchCommand.initializeStrayEquipment();
-
          // Dilapidated Bow
          dilapidatedBowFunc.initializeDilapidatedBow();
 
          // Ixian Probe
          ixianFunctions.initializeIxian();
+
+         // Crysknife
+         crysknifeFunctions.initializeCrysknife();
+
+         // BOSSES
+         // Initialize Stray custom bow
+         HollowWitchCommand.initializeStrayEquipment();
+         // Initialize Vagrant Spirit stuff
+         VagrantSpiritCommand.initializeHuskEquipment();
     }
 
     private void initializeDebugBooleans(){
@@ -102,7 +113,7 @@ public final class Main extends JavaPlugin {
         giveArtifactCommand.debugGiveCommand = this.getConfig().getBoolean("debug-give-command");
 
         ExhaustEvent.debugExhaustEvent = this.getConfig().getBoolean("debug-exhaust");
-
+        GainHPEvent.debugHP = this.getConfig().getBoolean("debug-stillsuit-hp");
     }
 
     private void initializeEvents(){
@@ -123,6 +134,9 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDiesEvent(), this);
         getServer().getPluginManager().registerEvents(new CharmPrepareEvents(), this);
 
+        // Register Events for Crysknife
+        getServer().getPluginManager().registerEvents(new crysknifeEvents(),this);
+
         // Register Events for Stylus
         getServer().getPluginManager().registerEvents(new BrewingStandEvents(), this);
         getServer().getPluginManager().registerEvents(new HollowWitchEvents(), this);
@@ -132,6 +146,9 @@ public final class Main extends JavaPlugin {
 
         // Register Events for Dilapidated Bow
         getServer().getPluginManager().registerEvents(new dilapidatedBowEvents(),this);
+
+        // Register Events for Vagrant Spirit
+        getServer().getPluginManager().registerEvents(new VagrantSpiritEvents(),this);
     }
 
     @Override

@@ -35,7 +35,8 @@ public class dilapidatedBowFunc {
 			Component.text(" "),
 			Component.text("A bow with unmatched ability to knock foes back,").color(TextColor.color(0xbee743)).decoration(TextDecoration.ITALIC,false),
 			Component.text("it also sets victims fiercely ablaze. Replenish it").color(TextColor.color(0xbee743)).decoration(TextDecoration.ITALIC,false),
-			Component.text("with a netherite block at an anvil.").color(TextColor.color(0xbee743)).decoration(TextDecoration.ITALIC,false),
+			Component.text("with a Netherite Block at an anvil.").color(TextColor.color(0xbee743)).decoration(TextDecoration.ITALIC,false),
+			Component.text("Requires Level 30+.").color(TextColor.color(0xbee743)).decoration(TextDecoration.ITALIC,false),
 			Component.text(" "),
 			Component.text("The purpose of argument").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true),
 			Component.text("is to change the nature of truth.").color(TextColor.color(0xe9a800)).decoration(TextDecoration.ITALIC, true)
@@ -51,11 +52,12 @@ public class dilapidatedBowFunc {
 		itemMeta.displayName(bowName);
 		itemMeta.lore(bowLore);
 
-		itemMeta.addEnchant(Enchantment.ARROW_KNOCKBACK,4,true);
+		itemMeta.addEnchant(Enchantment.ARROW_KNOCKBACK,5,true);
 		itemMeta.addEnchant(Enchantment.ARROW_FIRE,1,true);
-		itemMeta.addEnchant(Enchantment.ARROW_DAMAGE,3,true);
+		itemMeta.addEnchant(Enchantment.ARROW_DAMAGE,2,true);
 
 		itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
 		itemStack.setItemMeta(itemMeta);
 		bowItemStack = itemStack;

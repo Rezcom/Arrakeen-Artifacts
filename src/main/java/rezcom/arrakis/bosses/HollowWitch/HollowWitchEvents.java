@@ -1,4 +1,4 @@
-package rezcom.arrakis.bosses;
+package rezcom.arrakis.bosses.HollowWitch;
 
 import com.destroystokyo.paper.event.entity.EntityKnockbackByEntityEvent;
 import org.bukkit.Material;
@@ -14,9 +14,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import rezcom.arrakis.Main;
-import rezcom.arrakis.bosses.HollowWitchCommand;
+import rezcom.arrakis.bosses.HollowWitch.HollowWitchCommand;
 import rezcom.arrakis.dilapidatedbow.dilapidatedBowFunc;
 import rezcom.arrakis.fragments.soulFragmentFunctions;
+import rezcom.arrakis.stylus.stylusFunctions;
 
 import java.util.List;
 import java.util.Random;
@@ -105,7 +106,7 @@ public class HollowWitchEvents implements Listener {
 			Main.sendDebugMessage("Was custom bow",hollowDeathDebug);
 			event.getDrops().clear();
 			event.getDrops().add(soulFragmentFunctions.fragmentAStack);
-			event.getDrops().add(dilapidatedBowFunc.bowItemStack);
+			event.getDrops().add(stylusFunctions.stylusItemStack);
 		} else {
 			Main.sendDebugMessage("Wasn't custom bow or doesn't contain lore",hollowDeathDebug);
 		}

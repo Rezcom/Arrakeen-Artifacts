@@ -8,9 +8,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import rezcom.arrakis.charm.charmFunctions;
 import rezcom.arrakis.crysknife.crysknifeFunctions;
+import rezcom.arrakis.dilapidatedbow.dilapidatedBowFunc;
 import rezcom.arrakis.ixian.ixianFunctions;
 import rezcom.arrakis.stillsuit.stillsuitFunctions;
 import rezcom.arrakis.stylus.stylusFunctions;
+import rezcom.arrakis.suspensorBoots.suspensorBootsFunctions;
 
 import java.util.logging.Level;
 
@@ -93,6 +95,26 @@ public class giveArtifactCommand implements CommandExecutor {
                     }
                     p.getInventory().addItem(crysknifeFunctions.crysknifeStack);
                     p.sendMessage("Crysknife added to Inventory.");
+                    return true;
+
+                case "suspensor":
+                    if (suspensorBootsFunctions.bootsStack == null){
+                        sender.sendMessage("The Suspensor Boots ItemStack is null! It wasn't initialized correctly.");
+                        Main.logger.log(Level.SEVERE,"The Suspensor Boots ItemStack is null! It wasn't initialized correctly.");
+                        return false;
+                    }
+                    p.getInventory().addItem(suspensorBootsFunctions.bootsStack);
+                    p.sendMessage("Suspensor Boots added to Inventory.");
+                    return true;
+
+                case "dilapidated":
+                    if (dilapidatedBowFunc.bowItemStack == null){
+                        sender.sendMessage("Dilapidated Bow ItemStack is null, it wasn't initialized correctly!");
+                        Main.logger.log(Level.SEVERE,"Dilapidated Bow ItemStack is null, it wasn't initialized correctly!");
+                        return false;
+                    }
+                    p.getInventory().addItem(dilapidatedBowFunc.bowItemStack);
+                    p.sendMessage("Dilapidated Bow added to Inventory.");
                     return true;
             }
 

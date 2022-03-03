@@ -39,7 +39,7 @@ public class crysknifeEvents implements Listener {
 			Material.DIAMOND_CHESTPLATE,
 			Material.DIAMOND_LEGGINGS,
 			Material.DIAMOND_BOOTS
-			));
+	));
 
 	private static final ArrayList<Material> netheriteArmor = new ArrayList<>(Arrays.asList(
 			Material.NETHERITE_HELMET,

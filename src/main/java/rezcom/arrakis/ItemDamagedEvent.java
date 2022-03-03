@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import rezcom.arrakis.crysknife.crysknifeFunctions;
 import rezcom.arrakis.ixian.ixianFunctions;
 import rezcom.arrakis.stillsuit.stillsuitFunctions;
+import rezcom.arrakis.suspensorBoots.suspensorBootsFunctions;
 
 import java.util.logging.Level;
 
@@ -22,6 +23,8 @@ public class ItemDamagedEvent implements Listener {
         } else if (ixianFunctions.isItemIxian(itemStack)){
             event.setCancelled(true);
         } else if (crysknifeFunctions.isItemCrysknife(itemStack)){
+            event.setCancelled(true);
+        } else if (suspensorBootsFunctions.isItemSuspensorBoots(itemStack)){
             event.setCancelled(true);
         }
     }

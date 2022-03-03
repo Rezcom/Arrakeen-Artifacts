@@ -21,6 +21,8 @@ import rezcom.arrakis.stylus.BrewingStandEvents;
 import rezcom.arrakis.bosses.HollowWitch.HollowWitchCommand;
 import rezcom.arrakis.bosses.HollowWitch.HollowWitchEvents;
 import rezcom.arrakis.stylus.stylusFunctions;
+import rezcom.arrakis.suspensorBoots.suspensorBootsEvents;
+import rezcom.arrakis.suspensorBoots.suspensorBootsFunctions;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,6 +94,9 @@ public final class Main extends JavaPlugin {
          // Crysknife
          crysknifeFunctions.initializeCrysknife();
 
+         // Initialize Suspensor Boots
+         suspensorBootsFunctions.initializeBoots();
+
          // BOSSES
          // Initialize Stray custom bow
          HollowWitchCommand.initializeStrayEquipment();
@@ -146,6 +151,9 @@ public final class Main extends JavaPlugin {
 
         // Register Events for Dilapidated Bow
         getServer().getPluginManager().registerEvents(new dilapidatedBowEvents(),this);
+
+        // Register Events for Suspensor Boots
+        getServer().getPluginManager().registerEvents(new suspensorBootsEvents(),this);
 
         // Register Events for Vagrant Spirit
         getServer().getPluginManager().registerEvents(new VagrantSpiritEvents(),this);

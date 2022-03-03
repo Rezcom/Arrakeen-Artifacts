@@ -44,6 +44,9 @@ public class VagrantSpiritEvents implements Listener {
 		if (random.nextDouble() <= 0.33){
 			husk.setTarget(player);
 		}
+		if (random.nextDouble() <= 0.16){
+			VagrantPhantomEvents.spawnPhantom(player.getWorld(), player.getLocation());
+		}
 
 	}
 
@@ -58,6 +61,10 @@ public class VagrantSpiritEvents implements Listener {
 		EntityEquipment playerEquipment = player.getEquipment();
 		playerEquipment.getItemInOffHand();
 		Random random = new Random();
+
+		if (random.nextDouble() <= 0.06){
+			VagrantPhantomEvents.spawnPhantom(player.getWorld(), player.getLocation());
+		}
 
 		if (random.nextDouble() <= 0.25){
 			// Create Potion Itemstack and meta
